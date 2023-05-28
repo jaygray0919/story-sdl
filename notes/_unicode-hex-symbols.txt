@@ -1,0 +1,80 @@
+--------------
+Uncode symbols
+--------------
+\u0020	&#x0020;	space
+
+\u0040	&#x0040;	at mark	@
+\u0023	&#x0023;	hash	#
+\u003F	&#x003F;	question mark	?
+
+\u0026	&#x0026;	ampersand	&
+		<small>&#x0026;</small>
+
+\u1F4F1	&#x1F4F1;	mobile phone
+\u1F4BB	&#x1F4BB;	laptop computer
+\u1F5A5	&#x1F5A5;	Desktop Computer
+\u2B5C	&#x2B5C;	page exit (SLANTED NORTH ARROW WITH HORIZONTAL TAIL)
+\u2193	&#x2193;	downwards arrow
+
+\u0028	&#x0028;	open paren	(
+\u0029	&#x0029;	close paren	)
+\u005B	&#x005B;	open bracket	[
+\u005D	&#x005D;	close bracket	]
+\u007B	&#x007B;	open brace	{
+\u007D	&#x007D;	close brace	}
+\u002A	&#x002A;	asterisk	*
+\u002B	&#x002B;	plus sign	+
+\u002C	&#x002C;	comma	,
+\u002E	&#x002E;	period	.
+\u003A	&#x003A;	colon	:
+\u003B	&#x003B;	semicolon	;
+
+\u003C	&#x003C;	less-than sign	<
+\u003E	&#x003E;	greater-than sign	>
+\u003D	&#x003D;	equal sign	=
+\u2261	&#x2261;	identical to	≡
+\u301C	&#x301C;	wave dash	~
+\u0025	&#x0025;	percent	%
+
+\u007C	&#x007C;	vertical line (pipe)	|
+
+\u00A9	&#x00A9;	copyright	©
+\u2122	&#x2122;	trade mark sign	™
+
+\u2010	&#x2010;	hyphen	
+\u2012	&#x2012;	figure dash	
+\u2013	&#x2013;	en dash	
+\u2014	&#x2014;	em dash	—
+
+\u2018	&#x2018;	left single quotation mark	‘
+\u2019	&#x2019;	right single quotation mark	’
+\u201C	&#x201C;	left double quotation mark	“
+\u201D	&#x201D;	right double quotation mark	”
+
+\u2026	&#x2026;	horizontal ellipsis	…
+\u2194	&#x2194;	left right arrow
+
+--------
+compound
+--------
+JSON-LD
+&#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044;
+
+e.g.
+&#x0065;&#x002E;&#x0067;&#x002E;
+
+and/or
+&#x0061;&#x006E;&#x0064;&#x002F;&#x006F;&#x0072
+
+WEDGE
+&#x0057;&#x0045;&#x0044;&#x0047;&#x0045;
+
+Ontomatica
+&#x004f;&#x006e;&#x0074;&#x006f;&#x006d;&#x0061;&#x0074;&#x0069;&#x0063;&#x0061;
+
+American Food Data Systems Institute
+&#x0041;&#x006d;&#x0065;&#x0072;&#x0069;&#x0063;&#x0061;&#x006e;&#x0020;&#x0046;&#x006f;&#x006f;&#x0064;&#x0020;&#x0044;&#x0061;&#x0074;&#x0061;&#x0020;&#x0053;&#x0079;&#x0073;&#x0074;&#x0065;&#x006d;&#x0073;&#x0020;&#x0049;&#x006e;&#x0073;&#x0074;&#x0069;&#x0074;&#x0075;&#x0074;&#x0065;
+
+AFDSI
+&#x0041;&#x0046;&#x0044;&#x0053;&#x0049;
+

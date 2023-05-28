@@ -1,0 +1,14 @@
+
+media
+
+https://s3.amazonaws.com/benetta.net/media/background-svg/background-circuit-board-w1440-h560.svg
+https://s3.amazonaws.com/benetta.net/media/logo/ontomatica/ontomatica-symbol-w33-h36-color-1F64FF-bgnd-white.svg
+
+https://afdsi.com/static/logo/onto_sym_white_black_back_w421_h421_.png
+
+
+iframe source
+https://s3.amazonaws.com/benetta.net/story/structured-data-linter/item-16/index.html
+
+data
+https://s3.amazonaws.com/benetta.net/story/structured-data-linter/item-18/data-linked.json

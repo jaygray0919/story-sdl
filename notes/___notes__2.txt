@@ -1,0 +1,89 @@
+
+ShEx reference
+Shape Expressions are launching in Wikidata
+https://twitter.com/ReaderMeter/status/1136641524530204672
+
+SHACL reference
+https://t-code.pl/blog/2020/12/hydra-shacl-interoperability/
+https://forms.hypermedia.app/
+
+-----------------------
+link to graph processor
+
+http://www.ldf.fi/service/rdf-grapher
+
+---------------------------
+Release 0.2 AWS/Lambda link
+
+https://t8oykz4bta.execute-api.us-east-1.amazonaws.com/Prod/?url=http:%2F%2Flinter.structured-data.org%2Fexamples%2Fschema.org%2Feg-0399-jsonld.html
+
+
+----------
+miserables
+
+https://afdsi.com/fdg-miserables/
+https://afdsi.com/fdg-miserables/_data-miserables_.json
+
+-------
+d3.json
+
+missing: dendrogram!
+
+https://benetta.io/iframe/D3-one-source/sunburst.html
+https://benetta.io/iframe/D3-one-source/sunburst-zoom.html
+
+https://benetta.io/iframe/D3-one-source/sunburst-zoom-labels.html
+https://benetta.io/iframe/D3-one-source/collapsible-boxes.html
+
+https://benetta.io/iframe/D3-one-source/treemap.html
+https://benetta.io/iframe/D3-one-source/radial.html
+
+https://benetta.io/iframe/D3-one-source/circles.html
+
+https://benetta.io/iframe/D3-one-source/flare.json
+
+-------------
+editing notes
+
+use this for iframe
+<amp-iframe class="ap-o-sampler-iframe" layout="fixed-height" height="750" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="" [src]="sampler[activeSample].embedUrl" title="">
+<div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div>
+</amp-iframe>
+
+** NOT **
+<div class="ap-o-sampler-iframe">
+<amp-iframe class="ap-o-sampler-iframe" layout="fixed-height" height="750" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/shapes-use-case-diabetes/ShEx-blood-glucose-AMP/index.html" [src]="sampler[activeSample].embedUrl" title="ShEx Diabetes">
+<div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div>
+</amp-iframe>
+</div>
+
+for large slide, hijack logo-layer
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<h2>
+Graph of ShEx Observation for glucose
+</h2>
+</amp-story-grid-layer>
+
+
+--------
+diabetes
+
+iframe
+observation + classification
+http://hl7.org/fhir/observation-example-f001-glucose.html
+http://hl7.org/fhir/observation-example-f001-glucose.ttl.html
+
+
+reference via CTA URL
+https://github.com/google/schemarama/issues/9#issuecomment-722870420
+https://github.com/google/schemarama/issues/9
+
+
+references:
+SHACL/ShEx
+
+
+interesting! brilliant
+https://semaku.com/post/validating-material-composition-data-using-shacl/
+https://semaku.com/post/validating-material-composition-data-using-shacl-sparql-constraints-aggregates/
+

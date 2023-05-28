@@ -1,0 +1,85 @@
+
+------------
+edit process
+------------
+
+delete:
+
+analytics.js
+angular-file-upload.js
+angular-route.js
+angular-sanitize.js
+angular.js
+application_sdllambdav7.js
+bootstrap.js
+jquery-3.js
+
+
+left align
+
+delete comments
+<!--(.|\n)*?-->
+
+replace top:
+
+<html lang="en">
+<head>
+<style type="text/css">
+body{margin-left:1vw;margine-right:1vw;}
+@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structured Data Linter testing</title>
+
+delete from <head>:
+
+<script async="" src="SDL-language_files/analytics.js"></script><script src="SDL-language_files/jquery-3.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
+<script src="SDL-language_files/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="SDL-language_files/angular.js"></script>
+<script src="SDL-language_files/angular-route.js"></script>
+<script src="SDL-language_files/angular-sanitize.js"></script>
+<!-- <link rel="stylesheet" href="/assets/snippet.css" />-->
+<!-- <script src="/assets/angular-file-upload.js"></script> -->
+<!-- <script src="/assets/application.js"></script>-->
+
+<script src="SDL-language_files/angular-file-upload.js"></script>
+<script src="SDL-language_files/application_sdllambdav7.js"></script>
+
+<!-- base href="https://klpuiljexh.execute-api.us-east-1.amazonaws.com/" -->
+
+<script>
+      // Navigation
+      $(function () {
+        // Select appropriate nav tab
+        var href = window.location.pathname;
+        $('nav ul.nav ul.dropdown-menu a').removeClass('active');
+        $('nav ul.nav ul.dropdown-menu a[href="' + href + '"]').addClass('active');
+      });
+</script>
+
+delete <body>:
+
+<span class="sr-only">Toggle Navigation</span>
+
+<ul class="nav navbar-nav navbar-right">
+<li><span class="vers" about="http://linter.strctured-data.org/" property="softwareVersion">3.10.1</span></li>
+</ul>
+
+<p>
+      Enter a URL below to see what structured data your page contains: <!--. You can alternatively upload a local file or paste some markup.
+      Read more <a href="/about/" target="_self">about the Structured Data linter</a>. -->
+</p>
+
+<ul class="nav nav-tabs linter">
+<li><a href="" class="url active" ng-class="getClass('url')" ng-click="fieldset = 'url'">Lint by URL</a></li>
+
+<li><a href="" class="input" ng-class="getClass('input')" ng-click="fieldset = 'input'">Lint by Direct Input</a></li>
+</ul>
+
+<p><em><small>Disclaimer: this preview is only shown as a example of what a search engine <strong>might</strong>
+ display. It is to the discretion of each search engine provider to 
+decide whether your page will be displayed as an enhanced search result 
+or not in their search results pages.</small></em></p>
+
