@@ -1,0 +1,2427 @@
+<!--
+media breakpoints:
+	@media screen and (max-width:1024px)
+	@media screen and (max-width:767px) and (min-width:375px)
+-->
+
+<!doctype html>
+<html ⚡>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="shortcut icon" itemprop="image" href="https://ontomatica.io/static/image/onto_symb_w421_h421.png">
+<link rel="preload" href="https://s3.amazonaws.com/benetta.net/fonts/noto-sans/noto-sans-v11-latin-regular.woff2" as="font" crossorigin="">
+<title>
+Structured Data Linter project
+</title>
+<link rel="canonical" href="index.html">
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<script  async                               src="https://cdn.ampproject.org/v0.js"></script>
+<script  async custom-element="amp-bind"     src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
+<script  async custom-element="amp-gist"     src="https://cdn.ampproject.org/v0/amp-gist-0.1.js"></script>
+<script  async custom-element="amp-sidebar"  src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+<script  async custom-element="amp-story"    src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+<script  async custom-element="amp-twitter"  src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+<script  async custom-element="amp-list"     src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
+<script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+<script  async custom-element="amp-iframe"   src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+<script  async custom-element="amp-google-document-embed" src="https://cdn.ampproject.org/v0/amp-google-document-embed-0.1.js"></script>
+<style amp-custom>
+@font-face{font-family:"Noto Sans";font-style:normal;font-weight:regular;font-display:optional;src:local("Noto Sans"),local(NotoSans),url(https://s3.amazonaws.com/benetta.net/fonts/noto-sans/noto-sans-v11-latin-regular.woff2) format("woff2");}
+@font-face{font-family:system;font-style:normal;font-weight:300;src:local(".SFNSText-Light"),local(.HelveticaNeueDeskInterface-Light),local(".LucidaGrandeUI"),local("Ubuntu Light"),local("Segoe UI Light"),local("Roboto-Light"),local("DroidSans"),local("Tahoma");}
+@font-face{font-family:system;font-style:italic;font-weight:300;src:local(".SFNSText-Light"),local(.HelveticaNeueDeskInterface-Light),local(".LucidaGrandeUI"),local("Ubuntu Light"),local("Segoe UI Light"),local("Roboto-Light"),local("DroidSans"),local("Tahoma");}
+@font-face{font-family:system;font-style:normal;font-weight:400;src:local(".SFNSText-Light"),local(.HelveticaNeueDeskInterface-Light),local(".LucidaGrandeUI"),local("Ubuntu Light"),local("Segoe UI Light"),local("Roboto-Light"),local("DroidSans"),local("Tahoma");}
+@font-face{font-family:system;font-style:italic;font-weight:400;src:local(".SFNSText-Light"),local(.HelveticaNeueDeskInterface-Light),local(".LucidaGrandeUI"),local("Ubuntu Light"),local("Segoe UI Light"),local("Roboto-Light"),local("DroidSans"),local("Tahoma");}
+@font-face{font-family:system;font-style:normal;font-weight:500;src:local(".SFNSText-Light"),local(.HelveticaNeueDeskInterface-Light),local(".LucidaGrandeUI"),local("Ubuntu Light"),local("Segoe UI Light"),local("Roboto-Light"),local("DroidSans"),local("Tahoma");}
+@font-face{font-family:system;font-style:italic;font-weight:500;src:local(".SFNSText-Light"),local(.HelveticaNeueDeskInterface-Light),local(".LucidaGrandeUI"),local("Ubuntu Light"),local("Segoe UI Light"),local("Roboto-Light"),local("DroidSans"),local("Tahoma");}
+@font-face{font-family:system;font-style:normal;font-weight:700;src:local(".SFNSText-Light"),local(.HelveticaNeueDeskInterface-Light),local(".LucidaGrandeUI"),local("Ubuntu Light"),local("Segoe UI Light"),local("Roboto-Light"),local("DroidSans"),local("Tahoma");}
+@font-face{font-family:system;font-style:italic;font-weight:700;src:local(".SFNSText-Light"),local(.HelveticaNeueDeskInterface-Light),local(".LucidaGrandeUI"),local("Ubuntu Light"),local("Segoe UI Light"),local("Roboto-Light"),local("DroidSans"),local("Tahoma");}
+
+html{font-family:"Noto Sans",sans-serif}
+amp-story{color:#fff;border:none}
+amp-story-page{background-color:#000}
+h1{font-size:1.8rem}
+h2{font-size:1.2rem}
+h3{font-size:1.1rem}
+a{text-decoration:none;color:#fff}
+.opacity2{opacity:.6}
+.opacity3{opacity:.3}
+.logo{display:inline-block;margin-top:10%}
+.titles_page{text-align:center}
+.heading{width:100%;font-size:3.2em;font-weight:300;display:inline-block}
+.heading2{font-size:3em;display:inline-block;color:#fff}
+.subheading {display:inline-block;font-size:30px;color:#fff;font-weight:400;width:100%}
+.subheading2{display:inline-block;font-size:1.3em;padding:2% 15% 0 15%;color:#fff;font-weight:400}
+.subheading3{display:inline-block;width:100%;font-size:30px;color:#fff;font-weight:400;padding-top:2%}
+.subheading4{display:inline-block;width:100%;font-size:24px;color:#fff;font-weight:400;padding-top:2%}
+.titles {text-align:center}
+.titles2{text-align:center}
+.titles3{text-align:center}
+.alert{display:inline-block;background-color:#d10e02;font-size:25px;color:#fff;font-weight:400;text-align:justify;margin:1% 0 0 0}
+.buttonwrap{text-align:center}
+.button{display:inline-block;background-color:#ffca03;border-radius:5px 5px 5px 5px;font-weight:700;padding:1%}
+
+@media screen and (max-width:1024px)
+{.logo{display:inline-block;filter:drop-shadow(1px 1px 3px gray)}
+p span{background-color:#ffca03}
+.heading{font-size:60px;display:inline-block;color:#fff}
+.heading2{font-size:65px;display:inline-block;color:#fff;background-color:#0556f0}
+/* .mobile{padding-top:55%} */
+.titles{text-align:center;position:static}
+.titles3{text-align:center}
+.subheading{display:inline-block;font-size:30px;color:#fff;font-weight:400}
+.subheading3{display:inline-block;text-align:center;font-size:30px;color:#fff;font-weight:400;padding-top:2%}
+.alert{display:inline-block;background-color:#d10e02;font-size:15px;color:#fff;font-weight:400;text-align:justify}
+}
+
+@media screen and (max-width:767px) and (min-width:375px)
+{.heading{font-size:25px;display:inline-block;padding:10% 0 0 0}
+p span{background-color:#ffca03}
+a{text-decoration:none;color:#cd2a3b}
+.subheading{display:inline-block;font-size:17px;color:#fff;font-weight:400}
+.logo{display:inline-block}
+.titles{text-align:left}
+.titles2{text-align:center}
+.titles3{text-align:center}
+.heading2{font-size:25px;display:inline-block;color:#fff;background-color:#0556f0}
+.subheading2{display:inline-block;font-size:17px;color:#fff;padding:5% 0 0 0;font-weight:400}
+.subheading3{display:inline-block;text-align:center;font-size:15px;color:#fff;font-weight:400;padding-top:2%}
+.mobile{padding-top:75%}
+.alert{display:inline-block;background-color:#d10e02;font-size:10px;color:#fff;font-weight:400;text-align:justify}
+.buttonwrap{text-align:center}
+.button{display:inline-block;background-color:#ffca03;border-radius:5px 5px 5px 5px;font-weight:700;color:#fff;padding:2%}
+.prov__text ul {font-weight: 100; margin: 16px auto; font-size: 0.6em;}
+.g-dt,.g-dd{
+flex-basis:70%;
+flex-grow:1;
+font-size: 0.8em;
+padding:2px 4px;
+text-align:right;
+color:#fff;}
+.darken{filter:brightness(0.6) blur(8px)}
+}
+
+/* for attachment DL DT DD */
+.bg-w{background-color:#fff}
+.bg-b{background-color:#000}
+.bt{border-top:1px solid rgba(0,0,0,.1)}
+.c-bottom{align-content:end}
+.chartlegend span.green{background-color:#7fbf9b}
+.chartlegend span.red{background-color:#d66f6f}
+.chartlegend span.yellow{background-color:#fdee8b}
+.chartlegend span{display:inline-block;height:15px;width:15px;border-radius:.25rem}
+
+/* .color-p{color:#ff8b8b} */
+.color-p{color:#ff0000}
+.color-s{color:#6c757d}
+.cover{width:90%}
+.d-flex{display:flex;display:-ms-flexbox}
+.flex-fill{flex:1 1 auto}
+.mb{margin-bottom:1rem}
+.ml-s{margin-left:.5rem}
+.mr-s{margin-right:.5rem}
+.mx-a{margin-left:auto;margin-right:auto}
+.noedge{padding:0}
+.p-s{padding:.5rem}
+.paper{-webkit-box-shadow:0 1px 1px 0 rgba(0,0,0,.14),0 1.5px .5px -1px rgba(0,0,0,.2),0 0 2.5px 0 rgba(0,0,0,.12);-moz-box-shadow:0 1px 1px 0 rgba(0,0,0,.14),0 1.5px .5px -1px rgba(0,0,0,.2),0 0 2.5px 0 rgba(0,0,0,.12);box-shadow:0 1px 1px 0 rgba(0,0,0,.14),0 1.5px .5px -1px rgba(0,0,0,.2),0 0 2.5px 0 rgba(0,0,0,.12)}
+.pb{padding-bottom:1rem}
+.pt{padding-top:1rem}
+.p{padding:1rem}
+
+/* .sep-v{border-left:24px solid #ff8b8b} */
+.sep-v{border-left:24px solid #ff0000}
+.text-center{text-align:center}
+.text-fatty{text-transform:uppercase;font-weight:700}
+.text-justify{text-align:justify}
+.text-left{text-align:left}
+.w-50{width:50%}
+amp-story-grid-layer[template=vertical].logo-layer{padding:20px;justify-items:normal;-ms-flex-line-pack:start;align-content:start}
+amp-story-grid-layer[template=vertical].logo-layer .logo-wrapper{max-width:30px}
+@media (max-width:768px){amp-story-grid-layer[template=vertical].logo-layer .logo-wrapper{max-width:25px}}
+amp-story-grid-layer[template=vertical].logo-layer amp-img{opacity:.5}
+amp-story-grid-layer[template=vertical].credit-layer{padding:0 30px 0 5px;-ms-flex-line-pack:end;align-content:end}
+@media (max-width:480px){amp-story-grid-layer[template=vertical].credit-layer{padding:0 20px 0 5px}}
+amp-story-grid-layer[template=vertical].credit-layer p.credit{padding:0;color:#ddd;text-shadow:1px 1px 0 #000;font-size:15px;line-height:20px;font-family:'Noto Sans',Arial,sans-serif;text-align:left;max-width:inherit;font-style:normal;font-weight:700}
+@media (max-width:480px){amp-story-grid-layer[template=vertical].credit-layer p.credit{font-size:9px;line-height:16px}}
+amp-google-document-embed{margin:0 2vw}
+
+.sideBarNav{width:420px}
+.sideBarNav{background-color:#000;padding:20px}
+.sideBarNav h3{font-size:17px;line-height:25px}
+
+/* .sideBarNav .top-menu{border-top:1px solid #fff;margin-top:20px;padding-top:10px} */
+.sideBarNav .bottom-menu{border-top:1px solid #fff;margin-top:20px;padding-top:10px}
+.sideBarNav ul{margin:20px 0 0 0;padding:0}
+.sideBarNav ul li{font-size:15px;line-height:20px;list-style:none;margin:0 0 20px 0}
+.sideBarNav ul li a{color:#fff;font-size:15px;line-height:20px;text-decoration:none}
+
+/* .sideBarNav ul li a:before{display:inline-block;content:"";width:12px;height:12px;background-image:url(https://ontomatica.io/static/image/onto_symb_w421_h421.png); background-size:contain;background-repeat:no-repeat;vertical-align:middle;margin-left:7px;padding-right:5px} */
+.sideBarNav ul li a:before{display:inline-block;content:"";width:13px;height:14px;background-image:url('https://ontomatica.io/static/image/onto_symb_w421_h421.png'); background-size:contain;background-repeat:no-repeat;vertical-align:middle;margin-left:7px;padding-right:5px}
+
+.sideBarNav .close{position:absolute;right:0;top:0;width:48px;height:48px;opacity:1;background:0 0;border:0;cursor:pointer}
+.sideBarNav .close:after,.sideBarNav .close:before{position:absolute;right:22px;top:20px;content:" ";height:24px;width:2px;background-color:#fff}
+.sideBarNav .close:focus{outline:0}
+.sideBarNav .close:before{transform:rotate(45deg)}
+.sideBarNav .close:after{transform:rotate(-45deg)}
+
+.list-overflow[overflow]{position:absolute;bottom:0;left:0;right:0}
+.section{display:none;padding:20px 0 0;border-top:1px solid #ddd}
+
+/* attachment-tabs (currently fail) */
+input{display:none}
+label{display:inline-block;margin:0 0 -1px;padding:15px 25px;font-weight:600;text-align:center;color:#bbb;border:1px solid transparent}
+label:hover{color:#888;cursor:pointer}
+input:checked+label{color:#555;border:1px solid #ddd;border-top:2px solid orange;border-bottom:1px solid #fff}
+#tab1:checked~#content1,#tab2:checked~#content2,#tab3:checked~#content3,#tab4:checked~#content4,#tab5:checked~#content5{display:block}
+
+/* provenance */
+.g-flexed{display:flex;flex-flow:row wrap;border:solid #333;border-width:1px 1px 0 0;}
+.g-dl{display:flex;flex-flow:row wrap;border:solid #333;border-width:1px 1px 0 0;}
+
+.g-dt{
+/*flex-basis: 20%;*/
+flex-basis:30%;
+padding:2px 4px;
+/*background: #333;*/
+text-align:right;
+color:#fff;
+}
+.g-dd{flex-basis:70%;flex-grow:1;margin:0;padding:2px 4px;border-bottom:1px solid #333;}
+.prov__text ul{font-weight:100;margin:16px auto;line-height:1.6;font-size:14px}
+.show-yes  {visibility: visible;}
+.show-no   {display: none;}
+.show-hide {visibility: hidden;}
+.img-container {
+	position: absolute;
+	width: 0px;
+	height: 0px;
+}
+
+/* iframe additions below */
+.ap-o-sampler-iframe{width:100%;height:auto;background:#e6e6fa;box-shadow:0 15px 50px 0 rgba(0,0,0,.4)}
+.ap-o-sampler-iframe-r{width:100%;height:auto;background:red;box-shadow:0 15px 50px 0 rgba(0,0,0,.4)}
+.ap-o-sampler-iframe-b{width:100%;height:auto;background:blue;box-shadow:0 15px 50px 0 rgba(0,0,0,.4)}
+.ap-o-sampler-iframe-g{width:100%;height:auto;background:green;box-shadow:0 15px 50px 0 rgba(0,0,0,.4)}
+.ap-o-sampler-iframe [placeholder]{display:flex}
+[placeholder] .ap-o-sampler-iframe-source{width:calc(50% - 4px)}
+:target::before{content:'';display:block;visibility:hidden;height:120px;margin-top:-120px}
+.-n{display:flex;align-items:center;text-decoration:none;padding:0 0 1.5em;margin:0}
+.-i,.-r{transition:transform .3s cubic-bezier(.25,.1,.25,1)}
+.-r{line-height:1.6rem;font-size:.875rem;font-weight:700;color:#005af0;line-height:1.3}
+.-i{fill:#005af0;padding:.438em 0;margin-bottom:auto;margin-right:.625em;box-sizing:initial}
+.-n:hover .-i,.-n:hover .-r{transform:translateX(10px)}
+/* a{color:#005af0} */
+/* a{text-decoration:none;font-weight:700} */
+.ap-a-ico{display:flex;font-size:initial;box-sizing:initial;justify-content:center;width:1em;height:1em}
+.ap--sampler{margin-bottom:7em}
+@media (max-width:320px){.ap--sampler{display:none}}
+@media (min-width:768px){.ap--sampler{margin-bottom:8vw}}
+.ap-o-sampler{grid-column:3/-1;width:100%;max-width:1024px;padding-left:20px}
+@media (min-width:1680px){.ap-o-sampler{grid-column:5/-3;padding-left:0}}
+.ap-o-sampler-tab-bar{display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;background:#29323c}
+.ap-o-sampler-tab{cursor:pointer;padding:1.125em 1.75em;border-right:1px solid #3d444d;background:#29323c}
+.ap-o-sampler-tab.active{background:#3d444d}
+.ap-o-sampler-tab.active span{opacity:1}
+.ap-o-sampler-tab-title{font-size:.8125rem;font-family:Poppins,sans-serif;font-weight:700;color:#fff;opacity:.5}
+.ap-o-sampler-link{margin-top:1em;display:inline-block}
+.ap-o-sampler-link{margin-top:1em;display:inline-block}
+.-on{display:flex;align-items:center}
+.-on{padding:0 0 14px;border:0;background:0 0}
+.-on:focus~.-oi,.-on:hover~.-oi{opacity:1;pointer-events:all;transition:opacity .2s cubic-bezier(.25,.1,.25,1)}
+
+.spr-4{line-height:4em;}
+.twitter-left{margin-left:-10px;}
+.twitter-right{margin-left:10px;}
+/* amp-gist{overflow-y: scroll;} */
+
+<!-- https://ampforwp.com/tutorials/article/how-to-remove-the-social-icon-from-amp/ -->
+.amp-comment-button {
+    display: none;
+}
+
+</style>
+</head>
+<body>
+<svg style="position:absolute; width:0; height:0; overflow:hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="internal" viewBox="0 0 64 64"><path d="M43.16 10.18c-0.881-0.881-2.322-0.881-3.203 0s-0.881 2.322 0 3.203l16.335 16.335h-54.051c-1.281 0-2.242 1.041-2.242 2.242 0 1.281 0.961 2.322 2.242 2.322h54.051l-16.415 16.335c-0.881 0.881-0.881 2.322 0 3.203s2.322 0.881 3.203 0l20.259-20.259c0.881-0.881 0.881-2.322 0-3.203l-20.179-20.179z"></path></symbol>
+<symbol id="angle-down-solid" viewBox="0 0 64 64"><path d="M56.293 16.003c1.761-1.645 4.553-1.645 6.314 0 1.857 1.734 1.857 4.623 0 6.357l-27.45 25.638c-1.761 1.645-4.553 1.645-6.314 0l-27.45-25.638c-0.899-0.839-1.393-1.963-1.393-3.178s0.494-2.339 1.393-3.178c1.761-1.645 4.553-1.645 6.314 0l24.293 22.689 24.293-22.689z"></path></symbol>
+</defs>
+</svg>
+<amp-story
+  standalone
+                 title="Structured Data Linter Project"
+             publisher="Ontomatica"
+    publisher-logo-src="https://place-hold.it/260x58?text=Ontomatica-logo&bold&fontsize=23"
+   poster-portrait-src="https://place-hold.it/300x400?text=Structured Data Linter&bold&fontsize=23"
+     poster-square-src="https://place-hold.it/300x300?text=Structured Data Linter&bold&fontsize=23"
+  poster-landscape-src="https://place-hold.it/400x300?text=Structured Data Linter&bold&fontsize=23"
+  supports-landscape
+>
+   <!-- side="left" -->
+
+<amp-sidebar
+     class="sideBarNav"
+    layout="nodisplay"
+        id="sideBarNav"
+>
+<div class="top-menu">
+<h2>
+Table of Contents
+</h2>
+<h3>
+Structured Data Linter Project
+</h3>
+<button on="tap:sideBarNav.close" class="close"></button>
+</div>
+<div class="bottom-menu">
+</div>
+<amp-list
+  template="mst-toc"
+     width="auto"
+    height="1000"
+    layout="fixed-height"
+       src="amp-state:localState-toc"
+>
+<div placeholder>Loading ...</div>
+<div fallback>Failed to load data</div>
+<div
+	overflow
+	class="list-overflow"
+>
+</div>
+<template id="mst-toc" type="amp-mustache">
+<ul>
+<li><a href="#page=item-11">{{item-11}}</a></li>
+<li><a href="#page=item-12">{{item-12}}</a></li>
+<li><a href="#page=item-13">{{item-13}}</a></li>
+<li><a href="#page=item-14">{{item-14}}</a></li><hr>
+<li><a href="#page=item-15">{{item-15}}</a></li>
+<li><a href="#page=item-16">{{item-16}}</a></li>
+<li><a href="#page=item-17">{{item-17}}</a></li>
+<li><a href="#page=item-18">{{item-18}}</a></li>
+<li><a href="#page=item-19">{{item-19}}</a></li>
+<li><a href="#page=item-20">{{item-20}}</a></li>
+<li><a href="#page=item-21">{{item-21}}</a></li>
+<li><a href="#page=item-22">{{item-22}}</a></li>
+<li><a href="#page=item-23">{{item-23}}</a></li><hr>
+<li><a href="#page=item-24">{{item-24}}</a></li>
+<li><a href="#page=item-25">{{item-25}}</a></li>
+<li><a href="#page=item-26">{{item-26}}</a></li>
+<li><a href="#page=item-27">{{item-27}}</a></li>
+<li><a href="#page=item-28">{{item-28}}</a></li>
+<li><a href="#page=item-29">{{item-29}}</a></li>
+<li><a href="#page=item-30">{{item-30}}</a></li>
+<li><a href="#page=item-31">{{item-31}}</a></li>
+<li><a href="#page=item-32">{{item-32}}</a></li>
+<li><a href="#page=item-33">{{item-33}}</a></li>
+<li><a href="#page=item-34">{{item-34}}</a></li>
+<li><a href="#page=item-35">{{item-35}}</a></li><hr>
+<li><a href="#page=item-36">{{item-36}}</a></li>
+<li><a href="#page=item-37">{{item-37}}</a></li>
+<li><a href="#page=item-38">{{item-38}}</a></li>
+<li><a href="#page=item-39">{{item-39}}</a></li>
+<li><a href="#page=item-40">{{item-40}}</a></li>
+<li><a href="#page=item-41">{{item-41}}</a></li>
+<li><a href="#page=item-42">{{item-42}}</a></li><hr>
+<li><a href="#page=item-43">{{item-43}}</a></li>
+<li><a href="#page=item-44">{{item-44}}</a></li>
+<li><a href="#page=item-45">{{item-45}}</a></li>
+<li><a href="#page=item-46">{{item-46}}</a></li>
+<li><a href="#page=item-47">{{item-47}}</a></li>
+<li><a href="#page=item-48">{{item-48}}</a></li>
+<li><a href="#page=item-49">{{item-49}}</a></li>
+<li><a href="#page=item-50">{{item-50}}</a></li>
+<li><a href="#page=item-51">{{item-51}}</a></li>
+<li><a href="#page=item-52">{{item-52}}</a></li>
+<li><a href="#page=item-53">{{item-53}}</a></li>
+<li><a href="#page=item-54">{{item-54}}</a></li>
+<li><a href="#page=item-55">{{item-55}}</a></li>
+<li><a href="#page=item-56">{{item-56}}</a></li>
+<li><a href="#page=item-57">{{item-57}}</a></li>
+<li><a href="#page=item-58">{{item-58}}</a></li>
+<li><a href="#page=item-59">{{item-59}}</a></li><hr>
+<li><a href="#page=item-60">{{item-60}}</a></li>
+<li><a href="#page=item-61">{{item-61}}</a></li>
+<li><a href="#page=item-62">{{item-62}}</a></li>
+<li><a href="#page=item-63">{{item-63}}</a></li>
+<li><a href="#page=item-64">{{item-64}}</a></li>
+<li><a href="#page=item-65">{{item-65}}</a></li>
+<li><a href="#page=item-66">{{item-66}}</a></li>
+<li><a href="#page=item-67">{{item-67}}</a></li><hr>
+<li><a href="#page=item-68">{{item-68}}</a></li><hr>
+</br></br>
+</ul>
+</template>
+</div>
+</amp-list>
+</amp-sidebar>
+
+<amp-story-page id="item-11" data-item-label="Title Page">
+<amp-story-grid-layer template="fill">
+<amp-img data-hero id="background-11" class="opacity2" src="background-circuit-board-w1440-h560.svg" layout="responsive" width="1440" height="560"></amp-img>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="noedge c-bottom mb" template="vertical">
+<section class="paper color-s bg-w cover" animate-in="fly-in-left" animate-in-duration="0.5s" animate-in-delay="0.5s">
+<div class="d-flex">
+<div class="flex-fill pt pb">
+<hgroup class="ml-s">
+<h2 class="text-fatty color-p">project to enhance</h2>
+<h1 class="pt pb text-fatty">Structured Data Linter</h1>
+</hgroup>
+<div class="w-50 mx-a" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="1.8s">
+<p class="text-fatty pb">by Ankita Dhandha</p>
+</div>
+</div>
+<div class="sep-v" animate-in="fly-in-bottom" animate-in-duration="0.5s" animate-in-delay="1s">
+</div>
+</div>
+</section>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-12" data-item-label="Presentation Notes">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">Presentation Notes</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<p class="spr-4">&nbsp;</p>
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+<p class="subheading2">This is a living document. &#x201C;Lorem ipsum&#x201D; is placeholder for future content.</p>
+<p class="subheading2">Open links <svg fill="#FFFFFF" width="18" height="18" viewBox="0 -3 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg> on buttons <small>&#x0026;</small> in footers.</p>
+<p class="subheading2">See footer &#x2193; for page detail.</p>
+<p class="subheading2">Table of Contents is upper right &#x2013; navigate from there &#x2B5C;.</p>
+<p class="subheading2">Right&#x2010;side content previews target content <small>&#x0026;</small> usually is scrollable.</p>
+<p class="subheading2">Presentation works on &#x1F4BB; <small>&#x0026;</small> &#x1F4F1;.</p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+<amp-story-page-attachment layout="nodisplay" data-cta-text="Select &#x005E; for additional information in &#x201C;footer&#x201D;" data-title="Footer includes Scope Notes (SN) and Additional Information (AI)"><section class="p bg-w color-s text-justify"><h2 class="text-center">Scope Notes</h2><p>This is a note under the subject heading that explains and clarifies what is meant and what is not meant in the definition of the term and in its use as a subject heading.</p></section><hr><section class="p bg-w color-s text-justify"><h2 class="text-center">Scope Note Items</h2><dl class="chartlegend text-left"><dt>Carbs, Sugars, Total Fats, Saturates</dt><dd class="p-s ml-s"><span title="Low" class="green mr-s"></span>Less than 25% of recommended intake for a meal</dd><dd class="p-s ml-s"><span title="Medium" class="yellow mr-s"></span>Between 25% and 75% of recommended intake for a meal</dd><dd class="p-s ml-s"><span title="High" class="red mr-s"></span>More than 75% of recommended intake for a meal</dd></dl></section><hr><section class="p bg-w color-s text-justify"><h2 class="text-center">Additional Information</h2><p>These falafels are prepared with mashed sweet potatoes, black beans, toasted cumin, and coriander seeds. They are a healthy variation of the classic recipe, as they are oven-baked rather than fried. Serve them with tahini sauce for a tasty appetizer or stuff them in warm pitta bread with salad and tomatoes for a satisfying yet balanced meal.</p></section><hr><section class="p bg-w color-s text-justify"><h2 class="text-center">Additional Information Items</h2><dl class="chartlegend text-left"><dt>Fibers, Proteins</dt><dd class="p-s ml-s"><span title="High" class="green mr-s"></span>More than 75% of recommended intake for a meal</dd><dd class="p-s ml-s"><span title="Medium" class="yellow mr-s"></span>Between 25% and 75% of recommended intake for a meal</dd><dd class="p-s ml-s"><span title="Low" class="red mr-s"></span>Less than 25% of recommended intake for a meal</dd></dl></section><hr></amp-story-page-attachment>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://en.wikipedia.org/wiki/Living_document" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Wikipedia about Living Documents <svg fill="#FFFFFF" width="14" height="14" viewBox="0 -3 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-13" data-item-label="SDL Announcements">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">SDL Announcements</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<table>
+<tr>
+<td>
+<p class="spr-4">&nbsp;</p>
+<div animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<amp-twitter width="560" height="80" data-tweetid="104617719307055104" data-tooltip-icon="https://afdsi.com/static/logo/onto_sym_white_black_back_w421_h421_.png" data-tooltip-text="Expand tweet" role="link"></amp-twitter>
+</div>
+</td>
+<td>
+<p class="spr-4">&nbsp;</p><p class="spr-4">&nbsp;</p>
+<div animate-in="fade-in" animate-in-duration="4s" animate-in-delay="4s">
+<amp-twitter width="720" height="80" data-tweetid="1325211019640152066" data-tooltip-icon="https://afdsi.com/static/logo/onto_sym_white_black_back_w421_h421_.png" data-tooltip-text="Expand tweet" role="link"></amp-twitter>
+</div>
+</td>
+</tr>
+</table>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-14" data-item-label="SDL Agenda and Product Plan">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">SDL Agenda and Product Plan</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<p class="spr-4">&nbsp;</p>
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+<p class="subheading2">Release&#x2013;0.3.9&#x003A;&#x00A0;&#x00A0;SDL 3.9 baseline from Gregg Kellogg</p>
+<p class="subheading2">Release&#x2013;1.0&#x003A;&#x00A0;&#x00A0;SDL 3.9 running under AWS/Lambda</p>
+<p class="subheading2">Release&#x2013;2.0&#x003A;&#x00A0;&#x00A0;SDL running under AWS/EC2</p>
+<p class="subheading2">Release&#x2013;3.0&#x003A;&#x00A0;&#x00A0;SDL with new client&#x2010;side features and UX</p>
+<p class="subheading2">Release&#x2013;4.0&#x003A;&#x00A0;&#x00A0;SDL with new server&#x2010;side support for SHACL/ShEx</p>
+<p class="subheading2">Release&#x2013;5.0&#x003A;&#x00A0;&#x00A0;SDL with new server&#x2010;side support for ontologies</p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-15" data-item-label="Release 1.0 Design Goals">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">Release 1.0 Design Goals</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<p class="spr-4">&nbsp;</p>
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+<p class="subheading2">Implement SDL on AWS/Lambda</p>
+<p class="subheading2">Learn Lambda application limits to configure SDL as a Lambda application</p>
+<p class="subheading2">Learn SDL/Lambda processing limits to determine graph size and complexity for SDL analysis</p>
+<p class="subheading2">Test SDL/Lambda jobs that are too large/complex to run on SDL/Heroku (Gregg&#x2019;s native implemetation)</p>
+<p class="subheading2">Begin to prepare SDL customers for two platforms: one for simple jobs on AWS/Lambda; one for complex jobs (future release)</p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-16" data-item-label="Schema Markup Validator Baseline">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="0.6-21 Example: SMV Baseline" height="450px" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/SDL-SML-down/item-16.html" title="Schema Markup Validator reading SDL example eg-0399-jsonld (local)" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 1-21</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Define a simple &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; &#x0040;Graph</span></p>
+<p class="subheading2"><span>Test simple &#x0040;Graph on Schema.org Markup Validator (SMV)</span></p>
+<p class="subheading2"><span>Use A/B Testing: compare SMV and SDL reports using identical &#x0040;Graph (SMV/Graph <em>sameAs</em> SDL/Graph)&#x0020;(&#x2261;)</span></p>
+<p class="subheading2"><span>On SMV report, click an &#x0040;Type (PublicationIssue and/or ScholarlyArticle) to see report detail</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-page-attachment layout="nodisplay" data-cta-text="See JSON-LD source" data-title="Update this JSON-LD source">
+<amp-img src="https://benetta.io/iframe/SDL-sample/SDL-1-21-attachment.svg" layout="responsive" width="2048" height="2160"></amp-img>
+</amp-story-page-attachment>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://validator.schema.org/#url=http%3A%2F%2Flinter.structured-data.org%2Fexamples%2Fschema.org%2Feg-0399-jsonld.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Click to execute Schema Markup Validator</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-17" data-item-label="SDL AWS/Lambda @Baseline">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="0.6-22 Example: SDL AWS/Lambda @Baseline" height="450px" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/SDL-lambda-baseline-down/index.html" title="JSON-LD test case on AWS/Lambda running SDL" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 1-22</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span style="font-size:0.9rem;">begin A/B testing</span></p>
+<p class="subheading2"><span>&#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; test on AWS/Lambda running SDL</span></p>
+<p class="subheading2"><span>SDL &#x201C;search results preview&#x201D; is same information embedded in SMV analysis but served in human-readable format</span></p>
+<p class="subheading2"><span>On SDL report, scroll down to see &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; graph processing and analysis</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://klpuiljexh.execute-api.us-east-1.amazonaws.com/Prod/?url=http:%2F%2Flinter.structured-data.org%2Fexamples%2Fschema.org%2Feg-0399-jsonld.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Click to process the &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; graph on AWS/Lambda</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-18" data-item-label="Schema Markup Validator @Language">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="0.6-31 Example: Schema Markup Validator @Language" height="450px" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/SDL-SML-down/item-18.html" title="@Language JSON-LD test case on SMV" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 1-31</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span style="font-size:0.9rem;">continuing A/B testing</span></p>
+<p class="subheading2"><span>&#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; graph defines Natural Languages used to present content to readers (and <em>intelligent devices</em>) in language of their choice</span></p>
+<p class="subheading2"><span>&#x0040;Language graph is more complex than previous A/B test</span></p>
+<p class="subheading2"><span>Select SMV report about &#x0040;Types [&#x0065;&#x002E;&#x0067;&#x002E; Class (33 items) &#x0061;&#x006E;&#x0064;&#x002F;&#x006F;&#x0072 DefinedTerm (3 items)] for detail</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-page-attachment layout="nodisplay" data-cta-text="See &#x0040;Language source" data-title="schema.org &#x0040;Language &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044;">
+<amp-img src="https://benetta.io/iframe/language/_language-json-w2048-h16524_.png" layout="responsive" width="2048" height="16524"></amp-img>
+</amp-story-page-attachment>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://validator.schema.org/#url=https%3A%2F%2Fafdsi.com%2Fsdl%2Flanguage%2Fdata.json" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Click to execute Schema Markup Validator</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-19" data-item-label="SDL AWS/Lambda @Language">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="0.6-32 Example: SDL AWS/Lambda @Language" height="450px" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/SDL-lambda-language-down/index.html" title="@Language JSON-LD test case on AWS/Lambda" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 1-32</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span style="font-size:0.9rem;">continuing A/B testing</span></p>
+<p class="subheading2"><span>&#x0040;Language graph on AWS/Lambda</span></p>
+<p class="subheading2"><span>SDL &#x201C;search results preview&#x201D; is same information in SMV but served in human&#x2010;readable format</span></p>
+<p class="subheading2"><span>Scroll down to see &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; graph processing and analysis</span></p>
+<p class="subheading2"><span>When processed on AWS/Lambda, SDL generates report about 2,204 &#x201C;triples&#x201D; defined in &#x0040;Language graph</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://klpuiljexh.execute-api.us-east-1.amazonaws.com/Prod/?url=https:%2F%2Fafdsi.com%2Fsdl%2Flanguage%2Fdata.json" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Click to execute AWS/Lambda report (be patient &#x2026;)</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-20" data-item-label="Schema Markup Validator @Corporation">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="0.6-41 Example: Schema Markup Validator @Corporation" height="450px" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/SDL-SML-down/item-20.html" title="@Corporation JSON-LD test case on SMV" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 1-41</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span style="font-size:0.9rem;">continuing A/B testing</span></p>
+<p class="subheading2"><span>This &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; graph is the Ontomatica <em>Knowledge Graph</em></span></p>
+<p class="subheading2"><span>Knowledge Graph uses &#x301C; 20 &#x0040;Type objects such as &#x0040;Corporation, &#x0040;Product, &#x0040;Offer and &#x0040;Dataset</span></p>
+<p class="subheading2"><span>SMV intergrates (<em>links</em>) valid &#x0040;Type and &#x0040;Property relationships to create a single view &#x2014; &#x201C;Corporation&#x201D;</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-page-attachment layout="nodisplay" data-cta-text="See &#x0040;Corporation source" data-title="schema.org &#x0040;Corporation &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044;">
+<amp-img src="https://benetta.io/iframe/corporation/_corporation-json-w1024-h16352_.png" layout="responsive" width="1024" height="16352"></amp-img>
+</amp-story-page-attachment>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://validator.schema.org/#url=https%3A%2F%2Fafdsi.com%2Fsdl%2Forganization-avec-brand%2Fdata.json" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Click to execute Schema Markup Validator</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-21" data-item-label="SDL AWS/Lambda @Corporation">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="0.6-42 Example: SDL AWS/Lambda @Corporation" height="450px" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/SDL-lambda-organization-down/index.html" title="@Language JSON-LD test case on AWS/Lambda" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 1-42</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span style="font-size:0.9rem;">continuing A/B testing</span></p>
+<p class="subheading2"><span>&#x0040;Language graph on AWS/Lambda</span></p>
+<p class="subheading2"><span>SDL &#x201C;search results preview&#x201D; is same information in SMV but served in human&#x2010;readable format</span></p>
+<p class="subheading2"><span>Scroll down to see &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; graph processing and analysis</span></p>
+<p class="subheading2"><span>When processed on AWS/Lambda, SDL generates report about 2,204 &#x201C;triples&#x201D; defined in &#x0040;Language graph</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://klpuiljexh.execute-api.us-east-1.amazonaws.com/Prod/?url=https:%2F%2Fafdsi.com%2Fsdl%2Flanguage%2Fdata.json" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Click to execute AWS/Lambda report (be patient &#x2026;)</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-22" data-item-label="Vis 3D - @Corporation">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="0.6-51 Example: Vis 3D - @Corporation" height="550" layout="fixed-height" scrolling="no" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/graph-onto-v3/index.html" title="FDG of @Organization Ontomatica Offer-Product" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 1-51</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span style="font-size:0.9rem;">continuing A/B testing</span></p>
+<p class="subheading2"><span>Force Directed Graph (FDG) of Ontomatica&#x2019;s Knowledge Graph</span></p>
+<p class="subheading2"><span>Facts (entities <small>&#x0026;</small> relationships) in FDG are <em>identical</em> to &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; facts in SMV <small>&#x0026;</small> SDL reports</span></p>
+<p class="subheading2"><span>Rotate/zoom/move FDG to see specific entities <small>&#x0026;</small> relationships</span></p>
+<p class="subheading2"><span>Link highlighted in red features main entities on pages [<em>mainEntityOfPage</em>]</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/graph-onto-v3/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Knowledge Graph full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-23" data-item-label="Release 1.0 Issues">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-gist data-gistid="17c33c63e803a01612088b1a5b87ce64" layout="fixed-height" height="350"></amp-gist>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Release 1.0 Issues</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>AWS/Lambda &#x201C;duration window&#x201D; limits file size for SDL processing</span></p>
+<p class="subheading2"><span>AWS/Lambda &#x201C;size window&#x201D; limits integration of optional SDL features</span></p>
+<p class="subheading2"><span>SDL/AWS/Lambda will process larger <small>&#x0026;</small> more complex graphs than SDL/Heroku (Gregg&#x2019;s SDL platform)</span></p>
+<p class="subheading2"><span>SDM server is faster than default AWS/Lambda server <small>&#x0026;</small> will process graphs files up to 2.5MB</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://gist.github.com/ankitadhandha/17c33c63e803a01612088b1a5b87ce64" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Add comments about Release 1.0 Issues on GitHub</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-24" data-item-label="Release 2.0 Design Goals">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">Release 2.0 Design Goals</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<p class="spr-4">&nbsp;</p>
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+<p class="subheading2">Use client&#x2013;side methods to add features to SDL reports</p>
+<p class="subheading2">Use CSS grid to create cells for specific SDL features</p>
+<p class="subheading2">Use CSS lightbox to preview &#x201C;cell + content&#x201D;</p>
+<p class="subheading2">Upon cell selection, lightbox displays &#x201C;cell + content&#x201D; preview in full screen</p>
+<p class="subheading2">Build-out &#x201C;cell + content&#x201D; design with existing SDL features such as table analysis, error messages and reasoner messages</p>
+<p class="subheading2">Build-out &#x201C;cell + content&#x201D; design with new features such as graph visualization</p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+<amp-story-page-attachment layout="nodisplay" data-cta-text="What do these terms mean&#x003F;" data-title="Description of terms used to define Release-0.2 Design Goals"><section class="p bg-w color-s text-justify"><dl class="chartlegend text-left"><dt>Lightbox</dt><dd class="p-s ml-s"><span title="Low" class="green mr-s"></span>Lightbox is a JavaScript library that displays images and videos by filling the screen, and dimming out the rest of the web page.</dd><dt>Reasoner</dt><dd class="p-s ml-s"><span title="Low" class="yellow mr-s"></span>A semantic reasoner, reasoning engine, rules engine, or simply a reasoner, is a piece of software able to infer logical consequences from a set of asserted facts or axioms. The notion of a semantic reasoner generalizes that of an inference engine, by providing a richer set of mechanisms to work with. The inference rules are commonly specified by means of an ontology language, and often a description logic language.</dd><dt>Third item</dt><dd class="p-s ml-s"><span title="Low" class="red mr-s"></span>Lorem ipsum</dd></dl></section></amp-story-page-attachment>
+</amp-story-page>
+<amp-story-page id="item-25" data-item-label="Release 2.0 Design Notes">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">Release 2.0 Design Notes</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<br><br><br><br><amp-img src="https://user-images.githubusercontent.com/46296/118190080-77045a00-b3f7-11eb-8253-3d66828ef844.jpeg" layout="responsive" width="1368" height="768"></amp-img>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Jarno van Driel proposed new SDL features</span></p>
+<p class="subheading2"><span>New features are presented <small>&#x0026;</small> discussed on Google Docs</span></p>
+<p class="subheading2"><span>Preview document using link below</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://docs.google.com/document/d/1ZASsxfTFFZrsLrS71pQxA6eWvdhbi-hWuKJu9kCAPys/edit" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Jarno&#x2019;s Google Docs full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-26" data-item-label="SMV Baseline">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example 2-21 SMV Baseline" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/sdl-prototype/index.html" title="Jarno van Driel proposed new SDL features" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-21</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Jarno&#x2013;inspired CSS grid with six cells</span></p>
+<p class="subheading2"><span>Feature SDL table (current example injects sample data from Wikidata)</span></p>
+<p class="subheading2"><span>Feature one or more visualized graphs using processors &#x0065;&#x002E;&#x0067;&#x002E; D3.JS</span></p>
+<p class="subheading2"><span>Feature hierachical view of structured data&#x2014;similar to Schema Markup Validator</span></p>
+<p class="subheading2"><span>Feature parser statistics</span></p>
+<p class="subheading2"><span>Feature reasoner analysis (snippets)</span></p>
+<p class="subheading2"><span>Feature warnings <small>&#x0026;</small> errors (here preview shows ~50% of full page content)</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/sdl-prototype/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Release 2.0 prototype full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-27" data-item-label="SDL AWS/Lambda Baseline">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example 2-22 SDL AWS/Lambda Baseline" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/SDL-lambda-baseline-v02-down/index.html" title="SDL AWS/Lambda Baseline" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-22</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Production version of Jarno design</span></p>
+<p class="subheading2"><span>Sample uses simple case from SDL/AWS/Lambda Example 1-22</span></p>
+<p class="subheading2"><span>Cells feature:&nbsp;&nbsp;(1) search results preview&nbsp;&nbsp;(2) RDF&nbsp;&nbsp;(3) TTL&nbsp;&nbsp;(4) RDFa&nbsp;&nbsp;(5) &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; beautified&nbsp;&nbsp;(6) RDF Grapher&nbsp;&nbsp;(7) tabular report&nbsp;&nbsp;(8) parser statistics&nbsp;&nbsp;(9) linter message from reasoner</span></p>
+<p class="subheading2"><span>Footer includes link to SDL Release 2.0 prototype running on AWS/Lambda</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-page-attachment data-attach-id="Example: 2-22 SDL AWS/Lambda Baseline" layout="nodisplay" data-cta-text="Run Release 2.0 prototype on AWS/Lambda" data-title="Link to run Example 2-22 using Release 2.0 prototype"><section class="p bg-b color-s text-justify"><p class="text-center"><a href="https://t8oykz4bta.execute-api.us-east-1.amazonaws.com/Prod/?url=http:%2F%2Flinter.structured-data.org%2Fexamples%2Fschema.org%2Feg-0399-jsonld.html">https://t8oykz4bta.execute-api.us-east-1.amazonaws.com/Prod/?url=http:%2F%2Flinter.structured-data.org%2Fexamples%2Fschema.org%2Feg-0399-jsonld.html</a></p></section></amp-story-page-attachment>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/SDL-lambda-baseline-v02-down/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open production copy of Release 2.0 prototype full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-28" data-item-label="Vis - Circle Packing">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 2-31 Vis - Circle Packing" height="550" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/D3-one-source/circles.html" title="Vis - Circle Packing" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-31</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>On following pages are seven views of a <em>single</em> JSON data source</span></p>
+<p class="subheading2"><span>Example 2-31: Circle Packing</span></p>
+<p class="subheading2"><span>Example 2-32: Sunburst</span></p>
+<p class="subheading2"><span>With server&#x2013;side assistance, a newly generated JSON data structure could be similarly visualized</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/D3-one-source/circles.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Circle Packing diagram full screen</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-29" data-item-label="Vis - Sunburst">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 2-32 Vis - Sunburst" height="550" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/D3-one-source/sunburst.html" title="Vis - Sunburst" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-32</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Example 2-32: Sunburst</span></p>
+<p class="subheading2"><span>With server&#x2013;side assistance, a newly generated JSON data structure could be similarly visualized</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/D3-one-source/sunburst.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Sunburst diagram full screen</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-30" data-item-label="Vis - Sunburst Zoom with Labels">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 2-33 Vis - Sunburst Zoom with Labels" height="550" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/D3-one-source/sunburst-zoom-labels.html" title="Vis - Sunburst Zoom with Labels" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-33</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Sunburst Zoom with LabelsSunburst</span></p>
+<p class="subheading2"><span>With server&#x2013;side assistance, a newly generated JSON data structure could be similarly visualized</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/D3-one-source/sunburst-zoom-labels.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Sunburst Zoom diagram full screen</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-31" data-item-label="Vis - Collapsible Boxes">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 2-34 Vis - Collapsible Boxes" height="550" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/D3-one-source/collapsible-boxes.html" title="Vis - Collapsible Boxes" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-34</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Collapsible Boxes </span></p>
+<p class="subheading2"><span>With server&#x2013;side assistance, a newly generated JSON data structure could be similarly visualized</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/D3-one-source/collapsible-boxes.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Collapsible Boxes diagram full screen</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-32" data-item-label="Vis - Node-Link Tree">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 2-35 Vis - Node-Link Tree" height="550" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/D3-one-source/radial.html" title="Vis - Node-Link Tree" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-35</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Node-Link Tree </span></p>
+<p class="subheading2"><span>With server&#x2013;side assistance, a newly generated JSON data structure could be similarly visualized</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/D3-one-source/radial.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Node-Link Tree diagram full screen</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-33" data-item-label="Vis - Treemap">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 2-36 Vis - Treemap" height="550" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/D3-one-source/treemap.html" title="Vis - Treemap" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-36</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Treemap</span></p>
+<p class="subheading2"><span>With server&#x2013;side assistance, a newly generated JSON data structure could be similarly visualized</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/D3-one-source/treemap.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Treemap diagram full screen</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-34" data-item-label="Vis - schema.org as Directed Graph">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 2-37 Vis - schema.org as Directed Graph" height="500" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/graph-schema-gov-srv/index.html" title="Vis - schema.org as Directed Graph" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 2-41</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>A force directed graph (FDG) visualizes <em>schema.org</em> &#x0040;Type and &#x0040;Property specifications <small>&#x0026;</small> relationships</span></p>
+<p class="subheading2"><span>Source data conforms to subject&#x2013;predicate&#x2013;object (&#x003F;s &#x003F;p &#x003F;o) format</span></p>
+<p class="subheading2"><span>In contrast, <em>flare.json</em> structure (Examples 2-31 <small>&#x2194;</small> 2-37) uses hierarchical structure based on <em>RDFS:subClassOf</em></span></p>
+<p class="subheading2"><span>With server&#x2013;side assistance, a newly generated JSON data structure could be similarly visualized</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-page-attachment layout="nodisplay" data-cta-text="View FDG Source Data" data-title="&#x0040;GovernmentService and related &#x0040;Type and &#x0040;Property">
+<amp-img src="https://benetta.io/iframe/graph-schema-gov-srv/_government-service-TTL-h2048-h4968_.png" layout="responsive" width="2048" height="4968"></amp-img>
+</amp-story-page-attachment>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/graph-schema-gov-srv/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open <em>schema.org</em> FDG full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-35" data-item-label="Release 2.0 Issues">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-gist data-gistid="5a3a0200ea589965d7123e9459d867ef" layout="fixed-height" height="350"></amp-gist>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Item 2-51</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Develop consensus in SDL community <small>&#x0026;</small> among interested parties about final design for Release 2.0 interface</span></p>
+<p class="subheading2"><span>Will need SDL server&#x2013;side changes to generate JSON structure for D3.JS processing</span></p>
+<p class="subheading2"><span>Will need SDL server&#x2013;side changes to generate JSON structure for Force Directed Graph processing</span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://gist.github.com/ankitadhandha/5a3a0200ea589965d7123e9459d867ef" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Add comments about Release 2.0 Issues on GitHub</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-36" data-item-label="Release 3.0 Design Goals">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">Release 3.0 Design Goals</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<p class="spr-4">&nbsp;</p>
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+<p class="subheading3">Create SDL preparation methods <small>&#x0026;</small> production platform to analyze large graphs</p>
+<p class="subheading3">SDL processor <small>&#x0026;</small> reasoner objective:<br>analyze &#x0040;Graph with 10 millions statements (&#x201C;triples&#x201D;)</p>
+<p class="subheading3"></p>
+<p class="subheading3"></p>
+<p class="subheading3"></p>
+<p class="subheading3"></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-37" data-item-label="SDL AWS/EC2 USDA NALT">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 3-21 SDL AWS/EC2 USDA NALT" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/NALT-1/index-subset.html" title="SDL AWS/EC2 USDA NALT" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 3-21</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Refactored USDA National Agricultural Library Thesaurus (NALT) in <em>schema.org</em></span></p>
+<p class="subheading2"><span>NALT/&#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; size: 6.84 MB</span></p>
+<p class="subheading2"><span>NALT/&#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; exceeds SMV 2.5 MB limit (no A/B analysis)</span></p>
+<p class="subheading2"><span>Alternative: configured SDL on AWS/EC2 server</span></p>
+<p class="subheading2"><span>SDL/NALT report size: 31.6 MB</span></p>
+<p class="subheading2"><span>SDL/NALT/AWS/EC2 processing time: 5 hours</span></p>
+<p class="subheading2"><span>NALT &#x201C;triples&#x201D;: 515,530</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/NALT-1/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open SDL/NALT report full page (be patient &#x2026;)</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-38" data-item-label="Wedge Reference Library">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 3-22 Wedge Reference Library" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://wedge.ontomatica.io/Reference-Library_-_19-02-06/Wedge" title="Wedge Reference Library" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 3-22</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Ontomatica&#x2019;s Web Enabled Directed Graph Engine (&#x0057;&#x0045;&#x0044;&#x0047;&#x0045;) Reference Library is an <em>application</em> of National Agriculture Library Thesaurus</span></p>
+<p class="subheading2"><span>Research papers are mapped to <em>schema.org</em> &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; structure in SDL report</span></p>
+<p class="subheading2"><span>Research papers are annotated using <em>schema.org</em> &#x0040;Type and &#x0040;Property grammar</span></p>
+<p class="subheading2"><span>&#x0057;&#x0045;&#x0044;&#x0047;&#x0045; Reference Library contains information about 200,000+ papers</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span>NALT &#x201C;triples&#x201D;: 515,530</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://wedge.ontomatica.io/Reference-Library_-_19-02-06/Wedge" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open &#x0057;&#x0045;&#x0044;&#x0047;&#x0045; Library full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-39" data-item-label="Vis - NALT Sunburst">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 3-23 Vis - NALT Sunburst" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/NALT-sunburst/index.html" title="Vis - NALT Sunburst" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 3-23</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Visualization <em>does not include</em> Taxa which <em>is included</em> in SDL report (Example 3-21)</span></p>
+<p class="subheading2"><span>Visualization uses same &#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; structure as used in SDL Release 2.0 design and prototype</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/NALT-sunburst/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open National Agricultural Library Thesaurus visualization full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-40" data-item-label="SDL AWS/EC2 US NIH NCIT">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 3-31 SDL AWS/EC2 US NIH NCIT" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/NCIT/index-subset.html" title="SDL AWS/EC2 US NIH NCIT" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 3-31</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Refactored US NIH National Cancer Institute Thesaurus (NCIT) in <em>schema.org</em></span></p>
+<p class="subheading2"><span>NCIT/&#x004A;&#x0053;&#x004F;&#x004E;&#x2013;&#x004C;&#x0044; size: 13.7 MB<br>(no A/B analysis with Schema Markup Validator)</span></p>
+<p class="subheading2"><span>SDL/NCIT report size: 76.9 MB</span></p>
+<p class="subheading2"><span>SDL/NCIT/AWS/EC2 processing time: 9 hours</span></p>
+<p class="subheading2"><span>NCIT &#x201C;triples&#x201D;: 946,520</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/NCIT/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open SDL National Cancer Institute Thesaurus report full page (be <em>very</em> patient &#x2026;)</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-41" data-item-label="Wedge ChEMATIC">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 3-32 Wedge ChEMATIC" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://wedge.ontomatica.io/ChEMATIC_-_19-09-06/Wedge" title="Wedge ChEMATIC" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 3-32</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>ChEMATIC (Chemical Entities with Medical Applications, Therapeutic Indications <small>&#x0026;</small> Consequences) is an <em>application</em> of data from NIH NCIT <small>&#x0026;</small> NIH Medical Subject Headings (MeSH)</span></p>
+<p class="subheading2"><span>Several other ontologies complement NCIT <small>&#x0026;</small> MeSH JSON-LD structures</span></p>
+<p class="subheading2"><span>Biochemicals are mapped to hierarchical JSON-LD structures</span></p>
+<p class="subheading2"><span>Total ChEMATIC &#x201C;triples&#x201D; (structures and object maps): 700+ million</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://wedge.ontomatica.io/ChEMATIC_-_19-09-06/Wedge" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open &#x0057;&#x0045;&#x0044;&#x0047;&#x0045; ChEMATIC full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-42" data-item-label="Release 3.0 Issues">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-gist data-gistid="acb2559bf36bc75d2a262f774fa1f447" layout="fixed-height" height="500"></amp-gist>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Release 3.0 Issues</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>SDL/AWS/ECS is configured as a Docker container but improved methods will be needed to install SDL on best&#x2013;available AWS/EC2 server</span></p>
+<p class="subheading2"><span>To reduce processing duration, need methods to use multiple CPU cores</span></p>
+<p class="subheading2"><span>SDL/AWS/EC2 is expensive to run &#x2014; need to implement a business model to offset operating expenses</span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://gist.github.com/ankitadhandha/acb2559bf36bc75d2a262f774fa1f447" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Add comments about Release 3.0 Issues on GitHub</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-43" data-item-label="Release 4.0 Design Goals">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-gist data-gistid="42728b48c528992879f65c5bd033ba20" layout="fixed-height" height="650"></amp-gist>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Release 4.0 Design Goals</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Support Shapes Constraint Language (SHACL) &#x2014; a specification for validating graph&#x2013;based data against a set of conditions</span></p>
+<p class="subheading2"><span>Support Shape Expressions (ShEx) &#x2014; an RDF language for identifying predicates and their associated cardinalities and datatypes</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://gist.github.com/jaygray0919/42728b48c528992879f65c5bd033ba20" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Schemarama CORE, SHACL <small>&#x0026;</small> ShEx discussion on GitHub</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-44" data-item-label="Shapes by Tim Berners-Lee">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Item: 4-21 Shapes by Tim Berners-Lee" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/Linked-DataShapes-Forms-Footprints/index.html" title="Shapes by Tim Berners-Lee" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Item 4-21</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Tim Berners&#x2010;Lee on SHACL <small>&#x0026;</small> ShEx:</span></p>
+<p class="subheading2"><span>Shapes explain to machines what data should look like, independently of how that data is displayed to a user</span></p>
+<p class="subheading2"><span>Forms are a user interface allowing people to read and write data in a specific shape</span></p>
+<p class="subheading2"><span>Footprints explain to machines where new data should be stored</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/Linked-DataShapes-Forms-Footprints/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Tim Berners&#x2010;Lee discussion full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-45" data-item-label="Shapes by Ruben Verborgh">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Item: 4-22 Shapes by Ruben Verborgh" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://ruben.verborgh.org/blog/2019/06/17/shaping-linked-data-apps/#top-p-4" title="Shapes by Ruben Verborgh" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Item 4-22</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Ruben Verborgh on Shapes <small>&#x0026;</small> Linked Data:</span></p>
+<p class="subheading2"><span>Apps should be coded against shapes [and] Linked Data so other apps can reuse them</span></p>
+<p class="subheading2"><span>[Where] vocabularies provide a list of possible attributes, shapes mandate a specific structure for data, combining attributes from vocabularies in a certain way</span></p>
+<p class="subheading2"><span>Footprints explain to machines where new data should be stored</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://ruben.verborgh.org/blog/2019/06/17/shaping-linked-data-apps" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Ruben Verborgh article full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-46" data-item-label="SHACL at US NIH">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Item: 4-23 SHACL at US NIH" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/SHACL-PubMed/index.html" title="SHACL at US NIH" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Item 4-23</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Key findings in the US PubMed/NCBI article &#x201C;Automatic Generation of SHACL Shapes from Ontologies&#x201D;</span></p>
+<p class="subheading2"><span>OWL and SHACL are not equivalent in their interpretation</span></p>
+<p class="subheading2"><span>There are differences in how OWL interprets restrictions (for inferencing) and how SHACL interprets constraints (for validation)</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/SHACL-PubMed/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open PubMed/NCBI SHACL article full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-47" data-item-label="Glucosinolates Background">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Item: 4-31 Glucosinolates Background" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/glucosinolates-PubMed/index.html" title="Glucosinolates Background" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Item 4-31</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Glucosinolates are natural components of many pungent plants such as brocolli, mustard, cabbage, and horseradish</span></p>
+<p class="subheading2"><span>US NIH NCI review of links between cruciferous vegetable intake <small>&#x0026;</small> lung cancer risk concluded that high intake may decrease risk in a range of 17 &#x2010; 23 &#x0025;</span></p>
+<p class="subheading2"><span>Other studies report similar risk reductions for colorectal, breast, kidney, esophageal, <small>&#x0026;</small> oropharyngeal (mouth <small>&#x0026;</small> throat) cancers</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/glucosinolates-PubMed/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open National Library of Medicine report full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-48" data-item-label="Wedge Glucosinolates">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 4-32 Wedge Glucosinolates" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://wedge.ontomatica.io/Glucosinolates-Research_-_19-09-06/Wedge?q=facet_AC:1/facet_AP:95/facet_BI:520/facet_GC:10/facet_GE:6/facet_MI:141/facet_MP:5/facet_MT:3/facet_MU:15/facet_MX:10/facet_NC:448/facet_PS:20/facet_TA:177&group=facet_TA" title="Wedge Glucosinolates" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 4-32</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>&#x0041;&#x006d;&#x0065;&#x0072;&#x0069;&#x0063;&#x0061;&#x006e;&#x0020;&#x0046;&#x006f;&#x006f;&#x0064;&#x0020;&#x0044;&#x0061;&#x0074;&#x0061;&#x0020;&#x0053;&#x0079;&#x0073;&#x0074;&#x0065;&#x006d;&#x0073;&#x0020;&#x0049;&#x006e;&#x0073;&#x0074;&#x0069;&#x0074;&#x0075;&#x0074;&#x0065; (&#x0041;&#x0046;&#x0044;&#x0053;&#x0049;) <small>&#x0026;</small> &#x004f;&#x006e;&#x0074;&#x006f;&#x006d;&#x0061;&#x0074;&#x0069;&#x0063;&#x0061; participate in food <small>&#x0026;</small> agriculture research projects</span></p>
+<p class="subheading2"><span>One &#x0057;&#x0045;&#x0044;&#x0047;&#x0045; project integrated <small>&#x0026;</small> synthesized glucosinolate data from many studies</span></p>
+<p class="subheading2"><span>&#x0057;&#x0045;&#x0044;&#x0047;&#x0045;&#x2013;Glucosinolates enables Principal Investigators <small>&#x0026;</small> researchers to visualize relationships that otherwise are difficult to understand <small>&#x0026;</small> analyze</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://wedge.ontomatica.io/Glucosinolates-Research_-_19-09-06/Wedge?q=facet_AC:1/facet_AP:95/facet_BI:520/facet_GC:10/facet_GE:6/facet_MI:141/facet_MP:5/facet_MT:3/facet_MU:15/facet_MX:10/facet_NC:448/facet_PS:20/facet_TA:177&group=facet_TA" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open &#x0057;&#x0045;&#x0044;&#x0047;&#x0045;&#x2013;Glucosinolates full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-49" data-item-label="Glucosinolates Fingerprint Data">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<amp-google-document-embed src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRnLC8IJdeSBq4VlOiYKdivvIg5pQKAdh3N_iJQ6PDBvVkElsZvpOjmChs3bi_202vjIm60O1IQ_2Zf/pubhtml" layout="fixed-height" height="450" animate-in="fade-in" animate-in-duration="4s"></amp-google-document-embed>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 4-33</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>With an objective of creating a Knowledge Graph, glucosinolate data was difficult to synthesize <small>&#x0026;</small> integrate</span></p>
+<p class="subheading2"><span>Observations <small>&#x0026;</small> measurement methods were irregular</span></p>
+<p class="subheading2"><span>Plant taxa <small>&#x0026;</small> genetic variety data was regular, but &#x2018;part of plant&#x2019; designations were irregular</span></p>
+<p class="subheading2"><span>Research process would have been easier <small>&#x0026;</small> more accurate if <em>shape data</em> had been enforced during preparations <small>&#x0026;</small> observations</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRnLC8IJdeSBq4VlOiYKdivvIg5pQKAdh3N_iJQ6PDBvVkElsZvpOjmChs3bi_202vjIm60O1IQ_2Zf/pubhtml" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Glucosinolate &#x201C;fingerprint data&#x201D;</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-50" data-item-label="Vis 3D - Research Data Shapes">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 4-34 Vis 3D - Research Data Shapes" height="650" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/graph-glucs-shacl/index.html" title="Vis 3D - Research Data Shapes" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 4-34</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Force Directed Graph represents integration of data specifications (from ontologies) <small>&#x0026;</small> data constraints (to ensure data quality)</span></p>
+<p class="subheading2"><span>&#x201C;Ontology part&#x201D; of graph (taxa <small>&#x0026;</small> &#x2018;part of plant&#x2019;) is visable in &#x0057;&#x0045;&#x0044;&#x0047;&#x0045;&#x2013;Glucosinolates</span></p>
+<p class="subheading2"><span>&#x201C;Shape part&#x201D; of graph (represented as SHACL in TTL format) is in footer</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-page-attachment layout="nodisplay" data-cta-text="SHACL TTL source code for Force Directed Graph" data-title="SHACL TTL source code for Force Directed Graph">
+<amp-img src="https://benetta.io/iframe/SHACL-glucosinolates-TTL/PlantSubject.ttl.svg" layout="responsive" width="1766" height="11282"></amp-img>
+</amp-story-page-attachment>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/graph-glucs-shacl/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Force Directed Graph full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-51" data-item-label="Diabetes Background">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Item: 4-41 Diabetes Background" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/shapes-use-case-diabetes/PubMed-diabetes/index.html" title="Diabetes Background" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Item 4-41</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Diabetes is a debilitating <small>&#x0026;</small> life threatening disease</span></p>
+<p class="subheading2"><span>Research about <small>&#x0026;</small> remedies for diabetes depend on precise information where &#x201C;the devil is in the details&#x201D;</span></p>
+<p class="subheading2"><span>This NCBI article is an overview</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/shapes-use-case-diabetes/PubMed-diabetes/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open NCBI Diabetes Type 2 article full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-52" data-item-label="WEDGE Diabetes">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 4-42 WEDGE Diabetes" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://wedge.ontomatica.io/ChEMATIC_-_19-09-06/Wedge?q=facet_MC_18:79039342&group=facet_MC_18" title="WEDGE Diabetes" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 4-42</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>ChEMATIC is a WEDGE application to visualize relationships among biochemistry, factor inputs <small>&#x0026;</small> human conditions</span></p>
+<p class="subheading2"><span>ChEMATIC does not document opinions (something is good or bad); it only documents items <small>&#x0026;</small> their relationships</span></p>
+<p class="subheading2"><span>Medical <small>&#x0026;</small> nutrition experts use ChEMATIC information to express opinions <small>&#x0026;</small> advice</span></p>
+<p class="subheading2"><span>This graph visualizes data about Diabetes Mellitus, Type 2</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-page-attachment data-attach-id="Example: 4-42 WEDGE Diabetes" layout="nodisplay" data-cta-text="More about ChEMATIC" data-title="ChEMATIC summary"><section class="p bg-w color-s text-justify"><dl class="chartlegend text-left"><dt>Graphs show relationships among:</dt><dd class="p-s ml-s"><span title="Low" class="green mr-s"></span>human genes and chemicals</dd><dd class="p-s ml-s"><span title="Low" class="yellow mr-s"></span>diseases (bacterial, digestive, stomatognathic, nervous system, urogenital, cardiovascular, nutritional and metabolic, etc.)</dd><dd class="p-s ml-s"><span title="Low" class="red mr-s"></span>chemistry (inorganic and organic chemicals; heterocyclic and polycyclic compounds; macromolecular substances; hormones; enzymes and coenzymes; carbohydrates, lipids, amino acids, peptides, and proteins; nucleic acids, nucleotides, and nucleosides; and complex mixtures)</dd><dd class="p-s ml-s"><span title="Low" class="green mr-s"></span>pharmaceutical preparations</dd></dl></section></amp-story-page-attachment>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://wedge.ontomatica.io/ChEMATIC_-_19-09-06/Wedge?q=facet_MC_18:79039342&group=facet_MC_18" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open ChEMATIC Diabetes Mellitus graph full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-53" data-item-label="Dexcom Diabetes Monitor">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 4-43 Dexcom Diabetes Monitor" height="650" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/shapes-use-case-diabetes/dexcom-site/index.html" title="Dexcom Diabetes Monitor" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 4-43</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Diabetes observation <small>&#x0026;</small> monitoring are key parts of a personalized remedy</span></p>
+<p class="subheading2"><span>First we need to specify the <em>shape of glucose observations</em></span></p>
+<p class="subheading2"><span>Then we need to integrate observation shapes with <em>monitored glucose data</em></span></p>
+<p class="subheading2"><span>Example 4-44 illustrates an observation graph for glucose</span></p>
+<p class="subheading2"><span>Example 4-45 integrates</span></p>
+<p class="subheading2"><span>Example 4-46 integrates</span></p>
+<p class="subheading2"><span>Example 4-47 integrates</span></p>
+</div>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-54" data-item-label="Vis - Diabetes Data Shapes">
+<amp-story-grid-layer template="fill">
+<amp-img  id="background-54" class="opacity2" src="_background-pattern-w308-h176_.svg" layout="responsive" width="308" height="176"></amp-img>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<h2 class="" animate-in="fade-in" animate-in-duration="1600ms" animate-in-delay="400ms">Example 4-44: Graph of ShEx Observation for glucose</h2>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="" template="fill">
+<div class="img-container">
+<amp-img src="https://benetta.io/iframe/shapes-use-case-diabetes/ShEx-blood-glucose/__observation-shex-subset-graph-w13545-h1529_.svg" layout="fixed" width="9752" height="1101"animate-in="pan-left" animate-in-duration="90s"></amp-img>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+<amp-story-page-attachment layout="nodisplay" data-cta-text="Code for Shape Graph" data-title="ShEx code in TTL format">
+<amp-img src="https://benetta.io/iframe/shapes-use-case-diabetes/ShEx-blood-glucose/__observation-shex-subset-ttl-w2048-h24054_.svg" layout="responsive" width="2048" height="24054"></amp-img>
+</amp-story-page-attachment>
+</amp-story-page>
+<amp-story-page id="item-55" data-item-label="Visualizing Dexcom Observation Data - Hourly">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 4-45 Vis - Personalized Diabetes Data" height="500" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/shapes-use-case-diabetes/dexcom-D3/dexcom-glucose___hour/index.html" title="Vis - Personalized Diabetes Data" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 4-45</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Visualizing Dexcom Observation Data - Hourly</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/shapes-use-case-diabetes/dexcom-D3/dexcom-glucose___hour/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open visualization full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-56" data-item-label="Visualizing Dexcom Observation Data - Daily">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 4-46 Visualizing Dexcom Observation Data - Daily" height="500" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/shapes-use-case-diabetes/dexcom-D3/dexcom-glucose__day/index.html" title="Visualizing Dexcom Observation Data - Daily" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 4-46</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Visualizing Dexcom Observation Data - Daily</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/shapes-use-case-diabetes/dexcom-D3/dexcom-glucose__day/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open visualization full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-57" data-item-label="Visualizing Dexcom Observation Data - Histogram">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 4-47 Visualizing Dexcom Observation Data - Histogram" height="500" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/shapes-use-case-diabetes/dexcom-D3/dexcom-glucose_histogram/index.html" title="Visualizing Dexcom Observation Data - Histogram" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 4-47</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Visualizing Dexcom Observation Data - Histogram</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/shapes-use-case-diabetes/dexcom-D3/dexcom-glucose_histogram/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open visualization full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-58" data-item-label="Twitter: ShEx SHACL Announcements">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">Twitter: ShEx SHACL Announcements</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<table>
+<tr>
+<td>
+<p class="spr-4">&nbsp;</p>
+<div animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<amp-twitter width="560" height="80" data-tweetid="1011495002441179136" data-tooltip-icon="https://afdsi.com/static/logo/onto_sym_white_black_back_w421_h421_.png" data-tooltip-text="Expand tweet" role="link"></amp-twitter>
+</div>
+</td>
+<td>
+<p class="spr-4">&nbsp;</p>
+<div animate-in="fade-in" animate-in-duration="4s" animate-in-delay="4s">
+<amp-twitter width="720" height="80" data-tweetid="1262397755491790855" data-tooltip-icon="https://afdsi.com/static/logo/onto_sym_white_black_back_w421_h421_.png" data-tooltip-text="Expand tweet" role="link"></amp-twitter>
+</div>
+</td>
+</tr>
+</table>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-59" data-item-label="Release 4.0 Issues">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<amp-google-document-embed src="https://benetta.io/iframe/rel-0.4-issues/Patel-Schneider-SHACL.docx" layout="fixed-height" height="650" animate-in="fade-in" animate-in-duration="4s"></amp-google-document-embed>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Item 4-61</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Develop specification <small>&#x0026;</small> design for implementing SHACL <small>&#x0026;</small> ShEx in SDL</span></p>
+<p class="subheading2"><span>Simplify workflow that involves at least 2 source files (ontology <small>&#x0026;</small> shape) <small>&#x0026;</small> possibly more than one data structure (JSON-LD <small>&#x0026;</small> TTL)</span></p>
+<p class="subheading2"><span>Explain at least three conditions: ontology messages, shape messages, <small>&#x0026;</small> ontology/shape integration messages</span></p>
+<p class="subheading2"><span>Reconcile irregularity between ontology constraints <small>&#x0026;</small> shape constraints</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-60" data-item-label="Release 5.0 Design Goals">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">Release 5.0 Design Goals</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<p class="spr-4">&nbsp;</p>
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+<p class="subheading3">Support other ontologies &#x2014; in addition to schema.org</p>
+<p class="subheading3">In addition to &#x0040;Context registration of vocabulary terms, support reasoning about ontology&#x2013;specific grammar</p>
+<p class="subheading3">Enable vocabulary <small>&#x0026;</small> reasoning for SKOS&#x2013;based datasets</p>
+<p class="subheading3">Enable vocabulary <small>&#x0026;</small> reasoning for OWL&#x2013;based datasets</p>
+<p class="subheading3"></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-61" data-item-label="UN FAO AgroVoc">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 5-21 UN FAO AgroVoc" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/UN-FAO-brassica/index.html" title="UN FAO AgroVoc" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 5-21</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>UN FAO AgroVoc is a SKOS&#x2013;based dataset</span></p>
+<p class="subheading2"><span>AgroVoc is a multilingual controlled vocabulary covering all areas of interest to the Food <small>&#x0026;</small> Agriculture Organization of the United Nations, including food, nutrition, agriculture, fisheries, forestry <small>&#x0026;</small> the environment.</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/UN-FAO-brassica/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open UN FAO description of Brassica full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-62" data-item-label="US Library of Congress">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 5-22 US Library of Congress" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://benetta.io/iframe/Library-of-Congress/index.html" title="US Library of Congress" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 5-22</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>US Library of Congress is a SKOS&#x2013;based dataset</span></p>
+<p class="subheading2"><span>The Library of Congress Subject Headings (LCSH) comprise a thesaurus (controlled vocabulary) of subject headings, maintained by the United States Library of Congress, for use in bibliographic records</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="http://benetta.io/iframe/Library-of-Congress/index.html" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Library of Congress description of herbicide full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-63" data-item-label="Plant Ontology">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 5-31 Plant Ontology" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://browser.planteome.org/amigo/term/PO:0030076" title="Plant Ontology" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 5-31</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Plant Ontology is an OWL&#x2013;based dataset</span></p>
+<p class="subheading2"><span>&#x201C;archegonium head&#x201D; is referenced in WEDGE&#x2013;Glucosinolates</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://browser.planteome.org/amigo/term/PO:0030076" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open Plant Ontology description of &#x201C;archegonium head&#x201D; full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-64" data-item-label="Avocado Ontology">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<amp-google-document-embed src="https://afdsi.com/reader/pdf/avocado.pdf" layout="fixed-height" height="450" animate-in="fade-in" animate-in-duration="4s"></amp-google-document-embed>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 5-32</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Avocado Ontology is an OWL&#x2013;based dataset</span></p>
+<p class="subheading2"><span>Avocado is a popular food <small>&#x0026;</small> popular ingredient in other foods</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://afdsi.com/reader/pdf/avocado.pdf" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open ontology&#x2010;based Avocado description full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-65" data-item-label="US NIH PubChem RDF">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<amp-google-document-embed src="https://benetta.io/iframe/PubChem-RDF/PubChem-RDF-intro_-_Evan-Bolton.pdf" layout="fixed-height" height="450" animate-in="fade-in" animate-in-duration="4s"></amp-google-document-embed>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 5-41</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>US NIH PubChem is a multi&#x2013;ontology dataset</span></p>
+<p class="subheading2"><span>PubChem is a database of chemical molecules <small>&#x0026;</small> their activities against biological assays</span></p>
+<p class="subheading2"><span>Author: National Center for Biotechnology Information (NCBI); <em>partOf</em> United States National Institutes of Health (NIH)</span></p>
+<p class="subheading2"><span>More than 80 database vendors contribute to PubChem</span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://benetta.io/iframe/PubChem-RDF/PubChem-RDF-intro_-_Evan-Bolton.pdf" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open description of PubChem RDF full page</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-66" data-item-label="Wedge FNDDS & Meal Ingredients">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="darken" template="vertical" position="landscape-half-left">
+<div animate-in="fade-in" animate-in-duration="4s">
+<amp-iframe data-iframe-label="Example: 5-51 Wedge FNDDS & Meal Ingredients" height="450" layout="fixed-height" scrolling="yes" sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox allow-presentation allow-top-navigation" allow="fullscreen" frameborder="0" src="https://wedge.ontomatica.io/USDA-FNDDS_-_19-09-05/Wedge?q=facet_A_FCID_Crop:90/facet_A_FCID_MPED:55/facet_A_FNDDS3_View:4&group=facet_A_FCID_MPED" title="Wedge FNDDS & Meal Ingredients" class="ap-o-sampler-iframe"><div placeholder=""><div class="ap-o-sampler-iframe-source"></div></div></amp-iframe>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<h2 class="heading2">Example 5-51</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical" position="landscape-half-right">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1.5s">
+<p class="spr-4">&nbsp;</p>
+<p class="subheading2"><span>Wedge&#x2013;FNDDS (Food <small>&#x0026;</small> Nutrient Database for Dietary Studies) is a multi&#x2013;ontology dataset</span></p>
+<p class="subheading2"><span>FNDDS includes foods <small>&#x0026;</small> beverages nutrition data reported in &#x201C;What We Eat in America&#x201D;</span></p>
+<p class="subheading2"><span>FNDDS is an <em>application</em> of OWL&#x2013;based ontologies including AFDSI&#x2019;s Vocal (acronym for the phrase &#x201C;Vocabularium Alimentarum &#x2014; Vocabulary of Food&#x201D;)</span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+<p class="subheading2"><span></span></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-cta-layer class="buttonwrap">
+<a class="button" href="https://browser.planteome.org/amigo/term/PO:0030076" animate-in="fade-in" animate-in-duration="0.5s" animate-in-delay="4s">Open foods made with brassicas on Wedge&#x2013;FNDDS</a>
+</amp-story-cta-layer>
+</amp-story-page>
+<amp-story-page id="item-67" data-item-label="Release 5.0 Issues">
+<amp-story-grid-layer class="logo-layer" template="vertical">
+<div class="logo-wrapper">
+<amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-logo" type="amp-mustache">
+<amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img>
+</template>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<div class="titles" animate-in="fade-in" animate-in-duration="4s">
+<h1 class="heading2">Release 5.0 Issues</h2>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer template="vertical">
+<p class="spr-4">&nbsp;</p>
+<div class="titles" animate-in="fade-in" animate-in-duration="4s" animate-in-delay="1s">
+<p class="subheading3">Production issues will be more complicated than Release 3.0</p>
+<p class="subheading3">May be difficult to load an SDL&#x2013;instance configured with</br>schema.org&#x2013;based datasets</br>&#x002B;</br>SKOS&#x2013;based datasets</br>&#x002B;</br>OWL&#x2013;based datasets</p>
+<p class="subheading3">Processing duration could be long (days!)</p>
+<p class="subheading3"></p>
+<p class="subheading3"></p>
+</div>
+</amp-story-grid-layer>
+<amp-story-grid-layer class="credit-layer" template="vertical">
+<amp-list template="mst-credit" width="auto" height="24" layout="fixed-height" src="amp-state:localState-credit"><div overflow class="list-overflow"></div></amp-list>
+<template id="mst-credit" type="amp-mustache">
+<p class="credit">{{name}}</p>
+</template>
+</amp-story-grid-layer>
+</amp-story-page>
+<amp-story-page id="item-68" data-item-label="Provenance and Version Notes">
+<amp-story-grid-layer class="logo-layer" template="vertical"><div class="logo-wrapper"><amp-list template="mst-logo" width="auto" height="96" layout="fixed-height" src="amp-state:localState-logo"><div overflow class="list-overflow"></div></amp-list><template id="mst-logo" type="amp-mustache"><amp-img src="{{logo}}" layout="responsive" width="80" height="80"></amp-img></template></div></amp-story-grid-layer>
+<amp-story-grid-layer
+	template="vertical"
+	class="prov__text"
+>
+<div class="titles" animate-in="fade-in" animate-in-duration="2s">
+<h1 class="heading">
+Provenance and Document Properties
+</h1>
+<dl class="g-dl show-yes g-flexed">
+<dt class="g-dt show-yes">author</dt>
+<dd class="g-dd show-yes">Ankita Dhandha</dd></dl>
+<dl class="g-dl show-yes flexed">
+<dt class="g-dt show-yes">organization</dt>
+<dd class="g-dd show-yes">Ontomatica</dd></dl>
+<dl class="g-dl show-yes flexed">
+<dt class="g-dt show-yes">date published</dt>
+<dd class="g-dd show-yes">20-12-01</dd></dl>
+<dl class="g-dl show-yes flexed">
+<dt class="g-dt show-yes">date modified</dt>
+<dd class="g-dd show-yes">20-12-10</dd>
+<dt class="g-dt show-yes">modification note</dt>
+<dd class="g-dd show-yes">Added Section 4</dd></dl>
+<dl class="g-dl show-yes flexed">
+<dt class="g-dt show-yes">date modified</dt>
+<dd class="g-dd show-yes">20-12-16</dd>
+<dt class="g-dt show-yes">modification note</dt>
+<dd class="g-dd show-yes">Added Section 5</dd></dl>
+<dl class="g-dl show-yes flexed">
+<dt class="g-dt show-yes">date modified</dt>
+<dd class="g-dd show-yes">21-01-01</dd>
+<dt class="g-dt show-yes">release note</dt>
+<dd class="g-dd show-yes">Added information based on Gregg Kellogg email</dd></dl>
+<dl class="g-dl show-yes flexed">
+<dt class="g-dt show-yes">date modified</dt>
+<dd class="g-dd show-yes">21-07-07</dd>
+<dt class="g-dt show-yes">release note</dt>
+<dd class="g-dd show-yes">Updated to use Schema.org Markup Validator (SMV)</dd></dl>
+<dl class="g-dl show-no flexed">
+<dt class="g-dt show-no">date modified</dt>
+<dd class="g-dd show-no">21-01-11</dd>
+<dt class="g-dd show-no">release note</dt>
+<dd class="g-dd show-no">more future information</dd></dl>
+<dl class="g-dl show-no flexed">
+<dt class="g-dt show-no">date modified</dt>
+<dd class="g-dd show-no">21-01-11</dd>
+<dt class="g-dd show-no">release note</dt>
+<dd class="g-dd show-no">more future information</dd></dl>
+</div>
+</amp-story-grid-layer>
+</amp-story-page>
+</amp-story>
+</body>
+
+<amp-state
+	id="localState-logo"
+><script type="application/json">
+{"items":[{"logo":"https://afdsi.com/static/logo/onto_sym_white_black_back_w421_h421_.png"}]}
+</script>
+</amp-state>
+
+<amp-state
+	id="localState-credit"
+><script type="application/json">
+{"items":[{"name":"Ankita Dhandha \u2013 Ontomatica"}]}
+</script>
+</amp-state>
+
+<amp-state
+	id="localState-modal-tabs"
+><script type="application/json">
+{"items": [{"name-11": "Code headline","name-12": "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.","name-13": "About headline","name-14": "It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.","name-15": "Services headline","name-16": "The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.","name-17": "Portfolio headline","name-18": "She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.","name-19": "Contact headline","name-20": "When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane."}]}
+</script>
+</amp-state>
+
+<amp-state
+	id="localState-toc"
+><script type="application/json">
+{"items":[{
+"item-11":"Title Page",
+"item-12":"Presentation Notes",
+"item-13":"SDL Announcements",
+"item-14":"SDL Agenda and Product Plan",
+"item-15":"1-11 Item: Release 1.0 Design Goals",
+"item-16":"1-21 Example: SMV Baseline",
+"item-17":"1-22 Example: SDL AWS/Lambda Baseline",
+"item-18":"1-31 Example: SMV @Language",
+"item-19":"1-32 Example: SDL AWS/Lambda @Language",
+"item-20":"1-41 Example: SMV @Corporation",
+"item-21":"1-42 Example: SDL AWS/Lambda @Corporation",
+"item-22":"1-51 Example: Vis 3D - @Corporation",
+"item-23":"1-52 Item: Release 1.0 Issues",
+"item-24":"2-11 Item: Release 2.0 Design Goals",
+"item-25":"2-12 Item: Release 2.0 Design Notes",
+"item-26":"2-21 Example: SMV Baseline",
+"item-27":"2-22 Example: SDL AWS/Lambda Baseline",
+"item-28":"2-31 Example: Vis - Circle Packing",
+"item-29":"2-32 Example: Vis - Sunburst",
+"item-30":"2-33 Example: Vis - Sunburst Zoom with Labels",
+"item-31":"2-34 Example: Vis - Collapsible Boxes",
+"item-32":"2-35 Example: Vis - Node-Link Tree",
+"item-33":"2-36 Example: Vis - Treemap",
+"item-34":"2-41 Example: Vis - schema.org as Directed Graph",
+"item-35":"2-51 Item: Release 2.0 Issues",
+"item-36":"3-11 Item: Release 3.0 Design Goals",
+"item-37":"3-21 Example: SDL AWS/EC2 USDA NALT",
+"item-38":"3-22 Example: Wedge Reference Library",
+"item-39":"3-23 Example: Vis - NALT Sunburst",
+"item-40":"3-31 Example: SDL AWS/EC2 US NIH NCIT",
+"item-41":"3-32 Example: Wedge ChEMATIC",
+"item-42":"3-41 Item: Release 3.0 Issues",
+"item-43":"4-11 Item: Release 4.0 Design Goals",
+"item-44":"4-21 Item: Shapes by Tim Berners-Lee",
+"item-45":"4-22 Item: Shapes by Ruben Verborgh",
+"item-46":"4-23 Item: SHACL at US NIH",
+"item-47":"4-31 Item: Glucosinolates Background",
+"item-48":"4-32 Example: Wedge Glucosinolates",
+"item-49":"4-33 Example: Glucosinolates Fingerprint Data",
+"item-50":"4-34 Example: Vis 3D - Research Data Shapes",
+"item-51":"4-41 Item: Diabetes Background",
+"item-52":"4-42 Example: Wedge Diabetes",
+"item-53":"4-43 Example: Dexcom Diabetes Monitor",
+"item-54":"4-44 Example: Vis - Diabetes Data Shapes",
+"item-55":"4-45 Example: Vis Dexcom Observations - Hourly",
+"item-56":"4-46 Example: Vis Dexcom Observations - Daily",
+"item-57":"4-47 Example: Vis Dexcom Observations - Histogram",
+"item-58":"4-47 Item: ShEx SHACL Announcements",
+"item-59":"4-61 Item: Release 4.0 Issues",
+"item-60":"5-11 Item: Release 5.0 Design Goals",
+"item-61":"5-21 Example: UN FAO AgroVoc",
+"item-62":"5-22 Example: US Library of Congress",
+"item-63":"5-31 Example: Plant Ontology",
+"item-64":"5-32 Example: Avocado Ontology",
+"item-65":"5-41 Example: US NIH PubChem RDF",
+"item-66":"5-51 Example: Wedge FNDDS & Meal Ingredients",
+"item-67":"5-61 Item: Release 5.0 Issues",
+"item-68":"Provenance and Version Notes"
+}]}
+</script>
+</amp-state>
+
+</html>
